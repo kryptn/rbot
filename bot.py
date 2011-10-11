@@ -15,8 +15,12 @@ def getStories(subs):
 		l += list(r.get_subreddit(s).get_hot())
 	return l
 
+def getMatches(subs, matches):
+	stories = getStories(subs)
+	for m in matches:
+		findText(stories, m)
+
 subs = ['eve','evedreddit']
+matches = ['join','trial']
 
-stories = getStories(subs)
-
-findText(stories,'the')
+getMatches(subs, matches)
