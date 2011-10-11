@@ -16,7 +16,7 @@ def getStories(subs):
 	elif type(subs) is list:
 		for s in subs:
 			l += list(r.get_subreddit(s).get_hot())
-	else
+	else:
 		return l
 
 subs = ['eve','evedreddit']
