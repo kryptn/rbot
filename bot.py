@@ -1,8 +1,8 @@
 #!/usr/bin/python
-import reddit
+import reddit, config
 cond = True
 r = reddit.Reddit(user_agent='eve_trial_stalker')
-
+r.login(user=config.user, password=config.password)
 def findText(stories, text):
 	for story in stories:
 		if story.is_self:
@@ -11,17 +11,12 @@ def findText(stories, text):
 
 def getStories(subs):
 	l = []
-	if type(subs) is str:
-		l = list(r.get_subreddit(subs).get_hot())
-	elif type(subs) is list:
-		for s in subs:
-			l += list(r.get_subreddit(s).get_hot())
-	else:
-		return l
+	for s in subs:
+		l += list(r.get_subreddit(s).get_hot())
+	return l
 
 subs = ['eve','evedreddit']
 
 stories = getStories(subs)
 
-findText(stories,'trial')
-findText(stories,'trial')
+findText(stories,'the')
